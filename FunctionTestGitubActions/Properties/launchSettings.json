@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "FunctionTestGitubActions": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7278"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 33004,
+      "useSSL": false
+    }
+  }
+}
