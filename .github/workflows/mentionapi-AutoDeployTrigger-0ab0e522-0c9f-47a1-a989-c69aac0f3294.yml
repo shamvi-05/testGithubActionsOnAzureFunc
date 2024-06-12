@@ -1,0 +1,47 @@
+name: Trigger auto deployment for mentionapi
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - 'DockerFile/**'
+    - '.github/workflows/mentionapi-AutoDeployTrigger-0ab0e522-0c9f-47a1-a989-c69aac0f3294.yml'
+
+  # Allow manual trigger 
+  workflow_dispatch:      
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions: 
+      id-token: write #This is required for requesting the OIDC JWT Token
+      contents: read #Required when GH token is used to authenticate with private repo
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.MENTIONAPI_AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.MENTIONAPI_AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.MENTIONAPI_AZURE_SUBSCRIPTION_ID }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          appSourcePath: ${{ github.workspace }}/DockerFile 
+          registryUrl: tshamsinghgithub20240529105115.azurecr.io
+          registryUsername: ${{ secrets.MENTIONAPI_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.MENTIONAPI_REGISTRY_PASSWORD }}
+          containerAppName: mentionapi
+          resourceGroup: t-shamsinghres1
+          imageToBuild: tshamsinghgithub20240529105115.azurecr.io/mentionapi:${{ github.sha }}
+          _buildArgumentsKey_: |
+            _buildArgumentsValues_
+
+
