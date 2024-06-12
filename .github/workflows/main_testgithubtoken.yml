@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'FunctionTestGitubActions' # set this to the path to your web app project, defaults to the repository root
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '8.0.x' # set this to the dotnet version to use
 
 jobs:
@@ -38,9 +38,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2B2F3D2199A747B08D46421A21485310 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0BE2B2E92F5B403FAC867BD9D8A62C8B }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_8AC0B6ED52954C90858719C1C0C4B4C4 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_1A5D02C6F372472AB983BCAC4576186D }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3DCA554C030741928DCBDC575ED2FAE7 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CAFADBF0BD69456EA4D7A430DF52B8DF }}
 
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
