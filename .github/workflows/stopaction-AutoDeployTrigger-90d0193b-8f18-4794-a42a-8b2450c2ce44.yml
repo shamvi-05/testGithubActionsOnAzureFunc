@@ -7,7 +7,7 @@ on:
     branches: 
       [ main ]
     paths:
-    - 'DockerFile/**'
+    - './FunctionTestGithubActions/DockerFile/**'
     - '.github/workflows/stopaction-AutoDeployTrigger-90d0193b-8f18-4794-a42a-8b2450c2ce44.yml'
 
   # Allow manual trigger 
