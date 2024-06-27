@@ -18,7 +18,7 @@ namespace FunctionTestGitubActions
         public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Let's Analyse Source Control API ...Was it this Simple ?");
+            return new OkObjectResult("Let's Analyse Source Control API ...Was it this Simple ? Well Source Control Api makes it");
         }
     }
 }
